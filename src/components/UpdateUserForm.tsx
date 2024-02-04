@@ -2,9 +2,12 @@
 
 import { useUpdateSingleUserMutation } from "@/redux/user/userApi";
 import { useState } from "react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const UpdateUserForm = ({ initialData }: { initialData: any }) => {
   const [userData, setUserData] = useState(initialData);
+  const [description, setDescription] = useState("");
   const [updateSingleUser] = useUpdateSingleUserMutation(initialData._id);
 
   const handleChange = (e: any) => {
@@ -89,13 +92,36 @@ const UpdateUserForm = ({ initialData }: { initialData: any }) => {
             className='block text-sm font-medium text-gray-700'>
             Description
           </label>
-          <textarea
+          {/* <textarea
             id='description'
             name='description'
             value={userData.description}
             onChange={handleChange}
             className='mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300'
-            required></textarea>
+            required></textarea> */}
+          <CKEditor
+            editor={ClassicEditor}
+            data={userData.description}
+            onReady={(editor) => {
+              // You can store the "editor" and use when it is needed.
+              console.log("Editor is ready to use!", editor);
+            }}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              console.log(data);
+              setDescription(data);
+              setUserData((prevUserData: any) => ({
+                ...prevUserData,
+                description: data,
+              }));
+            }}
+            onBlur={(event, editor) => {
+              console.log("Blur.", editor);
+            }}
+            onFocus={(event, editor) => {
+              console.log("Focus.", editor);
+            }}
+          />
         </div>
 
         <div className='mb-4'>

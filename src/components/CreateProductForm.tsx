@@ -2,6 +2,7 @@
 
 import { useCreateProductMutation } from "@/redux/product/productApi";
 import { useState } from "react";
+import UploadFile from "./UploadFile";
 
 const CreateProductForm = () => {
   const [createProduct] = useCreateProductMutation();
@@ -22,9 +23,6 @@ const CreateProductForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    // Implement your logic to handle form submission
-    console.log("Product Data:", productData);
 
     await createProduct(productData);
   };
@@ -81,6 +79,8 @@ const CreateProductForm = () => {
             className='mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300'
             required
           />
+          
+        
         </div>
 
         <div className='mb-4'>

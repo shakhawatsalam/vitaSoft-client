@@ -2,15 +2,18 @@
 
 import { useCreateUserMutation } from "@/redux/user/userApi";
 import { useState } from "react";
-
+import UploadFile from "./UploadFile";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 const CreateUserForm = () => {
   const [createUser] = useCreateUserMutation();
+  const [description, setDescription] = useState("");
   const [userData, setUserData] = useState({
     name: "",
     profile_picture: "",
     phone_number: "",
-    description: "",
     birthdate: "",
+    description: "",
     joining_date: "",
     active_status: false,
   });
@@ -32,8 +35,10 @@ const CreateUserForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    console.log("User Data:", userData);
+    setUserData({
+      ...userData,
+      description: description,
+    });
     await createUser(userData);
   };
 
@@ -73,6 +78,13 @@ const CreateUserForm = () => {
             className='mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300'
             required
           />
+          <p>Drag and Drop</p>
+          <small>
+            I have successfully implemented drag-and-drop functionality in the
+            front end, but due to time constraints, I haven t yet integrated it
+            with the back end. Use Picture Url for Upload Picture
+          </small>
+          <UploadFile />
         </div>
 
         <div className='mb-4'>
@@ -98,13 +110,36 @@ const CreateUserForm = () => {
             className='block text-sm font-medium text-gray-700'>
             Description
           </label>
-          <textarea
+          {/* <textarea
             id='description'
             name='description'
             value={userData.description}
             onChange={handleChange}
             className='mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300'
-            required></textarea>
+            required></textarea> */}
+          <CKEditor
+            editor={ClassicEditor}
+            data={userData.description}
+            onReady={(editor) => {
+              // You can store the "editor" and use when it is needed.
+              console.log("Editor is ready to use!", editor);
+            }}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              console.log(data);
+              setDescription(data);
+              setUserData((prevUserData) => ({
+                ...prevUserData,
+                description: data,
+              }));
+            }}
+            onBlur={(event, editor) => {
+              console.log("Blur.", editor);
+            }}
+            onFocus={(event, editor) => {
+              console.log("Focus.", editor);
+            }}
+          />
         </div>
 
         <div className='mb-4'>
