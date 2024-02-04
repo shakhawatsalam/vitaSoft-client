@@ -1,5 +1,3 @@
-"use client";
-
 import { useCreateUserMutation } from "@/redux/user/userApi";
 import { useState } from "react";
 import UploadFile from "./UploadFile";
@@ -110,14 +108,15 @@ const CreateUserForm = () => {
             className='block text-sm font-medium text-gray-700'>
             Description
           </label>
-          {/* <textarea
+          <textarea
             id='description'
             name='description'
             value={userData.description}
             onChange={handleChange}
             className='mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300'
-            required></textarea> */}
-          <CKEditor
+            required></textarea>
+          <small>CKEditor giving  error while building</small>
+          {/* <CKEditor
             editor={ClassicEditor}
             data={userData.description}
             onReady={(editor) => {
@@ -126,7 +125,6 @@ const CreateUserForm = () => {
             }}
             onChange={(event, editor) => {
               const data = editor.getData();
-              console.log(data);
               setDescription(data);
               setUserData((prevUserData) => ({
                 ...prevUserData,
@@ -139,7 +137,7 @@ const CreateUserForm = () => {
             onFocus={(event, editor) => {
               console.log("Focus.", editor);
             }}
-          />
+          /> */}
         </div>
 
         <div className='mb-4'>

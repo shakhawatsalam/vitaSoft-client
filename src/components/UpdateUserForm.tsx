@@ -1,4 +1,3 @@
-// components/UpdateUserForm.js
 
 import { useUpdateSingleUserMutation } from "@/redux/user/userApi";
 import { useState } from "react";

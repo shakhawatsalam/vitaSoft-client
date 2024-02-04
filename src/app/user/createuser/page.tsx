@@ -1,4 +1,4 @@
-// 'use client'
+"use client";
 import CreateUserForm from "@/components/CreateUserForm";
 import React from "react";
 
