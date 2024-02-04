@@ -92,13 +92,7 @@ const UpdateUserForm = ({ initialData }: { initialData: any }) => {
             className='block text-sm font-medium text-gray-700'>
             Description
           </label>
-          {/* <textarea
-            id='description'
-            name='description'
-            value={userData.description}
-            onChange={handleChange}
-            className='mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300'
-            required></textarea> */}
+       
           <CKEditor
             editor={ClassicEditor}
             data={userData.description}

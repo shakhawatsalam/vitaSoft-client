@@ -1,4 +1,5 @@
 "use client";
+import Loader from "@/components/Loader";
 import UpdateProductForm from "@/components/UpdateProductForm";
 import UpdateUserForm from "@/components/UpdateUserForm";
 import {
@@ -13,7 +14,10 @@ const UpdateUserpage = ({ params }: { params: any }) => {
 
   const { data } = useGetSingleUserQuery(updateUserId);
   console.log(data?.data);
-  const initialUserData = data?.data || {};
+  const initialUserData = data?.data;
+  if (!initialUserData) {
+    return <Loader />;
+  }
   return (
     <div>
       <UpdateUserForm initialData={initialUserData}></UpdateUserForm>

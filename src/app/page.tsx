@@ -5,6 +5,7 @@ import { useGetAllUserQuery } from "@/redux/user/userApi";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import "../components/styles/pagination.css";
+import Loader from "@/components/Loader";
 
 export default function Home() {
   const { data } = useGetAllUserQuery({});
@@ -20,7 +21,9 @@ export default function Home() {
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedEvents = users.slice(startIndex, endIndex);
-
+  if (!users) {
+    return <Loader />;
+  }
   return (
     <main>
       <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-5 place-content-center mt-10'>
