@@ -20,10 +20,10 @@ const Navbar = () => {
         {/* Navigation Links (Hidden on Mobile) */}
         <div className='hidden md:flex space-x-4'>
           <Link href='/' className='text-white'>
-            All Product
+            All User
           </Link>
-          <Link href='product/create-product' className='text-white'>
-            Create Product
+          <Link href='/product/create-user' className='text-white'>
+            Create User
           </Link>
           <a href='#' className='text-white'></a>
         </div>

@@ -1,8 +1,10 @@
 "use client";
 
+import { useCreateProductMutation } from "@/redux/product/productApi";
 import { useState } from "react";
 
 const CreateProductForm = () => {
+  const [createProduct] = useCreateProductMutation();
   const [productData, setProductData] = useState({
     name: "",
     description: "",
@@ -18,11 +20,13 @@ const CreateProductForm = () => {
     });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+
     // Implement your logic to handle form submission
     console.log("Product Data:", productData);
-    // You can send the data to an API or perform other actions here
+
+    await createProduct(productData);
   };
 
   return (
