@@ -24,7 +24,7 @@ const ProductCard = () => {
       </div>
 
       <div className='flex justify-between space-x-2 p-4'>
-        <Link  className='text-blue-500 hover:underline' href='/product/update-product'>
+        <Link  className='text-blue-500 hover:underline' href='/product/update-user'>
           Update
         </Link>
         <Link className='text-red-500 hover:underline' href='#'>

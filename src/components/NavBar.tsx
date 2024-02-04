@@ -22,7 +22,7 @@ const Navbar = () => {
           <Link href='/' className='text-white'>
             All User
           </Link>
-          <Link href='/product/create-user' className='text-white'>
+          <Link href='/user/create-user' className='text-white'>
             Create User
           </Link>
           <a href='#' className='text-white'></a>
